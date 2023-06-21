@@ -13,10 +13,6 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
-    'cars.apps.CarsConfig',
-    'pages.apps.PagesConfig',
-    'accounts.apps.AccountsConfig',
-    'contacts.apps.ContactsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -33,6 +29,13 @@ INSTALLED_APPS = [
     # Providers
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
+
+    #     My apps,
+    'cars',
+    'pages',
+    'accounts',
+    'contacts',
+
 ]
 
 MIDDLEWARE = [
