@@ -2,7 +2,7 @@
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
     <data-source source="LOCAL" name="carzone_db" uuid="f5435c9e-3fa7-4fb4-a068-5cf63fac1187">
-      <driver-ref>sqlite.xerial</driver-ref>
+      <driver-ref>b186ba7c-ee7e-4b49-9731-a54257bcf307</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/carzone_db</jdbc-url>
