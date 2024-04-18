@@ -1,14 +1,13 @@
 import os.path
 from pathlib import Path
 
+from django.contrib.messages import constants as messages
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-ng%mrbl9t4zv+&mfx-#3-i&es9&enj2xsq0h1b@*ldur9k@diu'
 
 DEBUG = True
-
-# LOGIN_REDIRECT_URL = 'dashboard'
-
 
 ALLOWED_HOSTS = ['*']
 
@@ -30,12 +29,11 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
 
-    #     My apps,
+    # My apps
     'cars',
     'pages',
     'accounts',
     'contacts',
-
 ]
 
 MIDDLEWARE = [
@@ -44,6 +42,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'allauth.account.middleware.AccountMiddleware',  # Add this line
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -70,9 +69,17 @@ TEMPLATES = [
 WSGI_APPLICATION = 'root.wsgi.application'
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        "NAME": os.environ.get('DB_NAME'),
+        "USER": os.environ.get('DB_USER'),
+        "PASSWORD": os.environ.get('DB_PASS'),
+        "HOST": os.environ.get('DB_HOST'),
+        "PORT": os.environ.get('DB_PORT'),
     }
 }
 
@@ -99,16 +106,13 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR / 'static')
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-MEDIA_URL = 'media/'
-MEDIA_ROOT = os.path.join(BASE_DIR / 'media')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# Messages
-from django.contrib.messages import constants as messages
 
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
@@ -119,8 +123,8 @@ SITE_ID = 1
 # Email sending
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = '########'
-EMAIL_HOST_PASSWORD = '#######'
+EMAIL_HOST_USER = 'your_email@gmail.com'
+EMAIL_HOST_PASSWORD = 'your_email_password'
 EMAIL_USE_TLS = True
 
 # Whitenoise settings

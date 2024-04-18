@@ -20,3 +20,5 @@ sqlparse
 typing_extensions
 urllib3
 whitenoise
+django-allauth
+psycopg2-binary

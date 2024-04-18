@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect
-from .models import Team
-from cars.models import Car
+from django.contrib import messages
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
-from django.contrib import messages
+from django.shortcuts import render, redirect
+
+from cars.models import Car
+from .models import Team
 
 
 # Create your views here.
